@@ -116,7 +116,14 @@ class LevelSelectState(State):
         #   what unique restriction or ability that boss applies during the round.
         #   This dictionary will later be used to look up and apply special effects based on which boss is active.
         boss_abilities = {
-
+            "The Mark": "Face cards become identical.",
+            "The Needle": "You have 1 less hand this round.",
+            "The House": "All cards are face-down.",
+            "The Hook": "Draw one less card each turn.",
+            "The Water": "All suits count as the same suit.",
+            "The Manacle": "You lose one discard.",
+            "The Club": "Clubs give +bonus when scored.",
+            "The Goad": "Straights give reduced score."
         }
 
         # Dict of boss with their color schemes
