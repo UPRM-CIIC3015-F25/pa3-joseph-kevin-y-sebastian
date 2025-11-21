@@ -837,6 +837,42 @@ class GameState(State):
         #       # Apply that Joker’s effect
         #       self.activated_jokers.add("joker card name")
         #   The last line ensures the Joker is visibly active and its effects are properly applied.
+        if "The Joker" in owned:
+            hand_mult += 4
+            self.activated_jokers.add("The Joker")
+        if "Michael Myers" in owned:
+            hand_mult += random.randint(0, 23)
+            self.activated_jokers.add("Michael Myers")
+        if "Fibonacci" in owned:
+            fib_ranks = [Rank.ACE, Rank.TWO, Rank.THREE, Rank.FIVE, Rank.EIGHT]
+            count = sum(1 for c in self.cardsSelectedList if c.rank in fib_ranks)
+            hand_mult += count * 8
+            self.activated_jokers.add("Fibonacci")
+        if "Gauntlet" in owned:
+            self.playerInfo.playerChips += 250
+            self.playerInfo.amountOfHands = max(0, self.playerInfo.amountOfHands - 2)
+            self.activated_jokers.add("Gauntlet")
+        if "Ogre" in owned:
+            hand_mult += 3 * len(self.playerJokers)
+            self.activated_jokers.add("Ogre")
+        if "Straw Hat" in owned:
+            hands_played = 4 - self.playerInfo.amountOfHands
+            self.playerInfo.playerChips += max(0, 100 - 5 * hands_played)
+            self.activated_jokers.add("Straw Hat")
+        if "Hog Rider" in owned and hand_name == "Straight":
+            self.playerInfo.playerChips += 100
+            self.activated_jokers.add("Hog Rider")
+        if "? Block" in owned and len(self.cardsSelectedList) == 4:
+            self.playerInfo.playerChips += 4
+            self.activated_jokers.add("? Block")
+        if "Hogwarts" in owned:
+            ace_count = sum(1 for c in self.cardsSelectedList if c.rank == Rank.ACE)
+            hand_mult += 4 * ace_count
+            self.playerInfo.playerChips += 20 * ace_count
+            self.activated_jokers.add("Hogwarts")
+        if "802" in owned and self.playerInfo.amountOfHands == 0:
+            added_to_round *= 2
+            self.activated_jokers.add("802")
 
         procrastinate = False
 
