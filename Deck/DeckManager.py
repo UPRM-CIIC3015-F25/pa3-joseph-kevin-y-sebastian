@@ -165,22 +165,28 @@ class DeckManager:
 
     # TODO (TASK 5.1): Complete the priceMap variable by assigning each joker a price.
     #   The key should represent the joker's name, and the value should be the joker's price.
-    def createJokerDeck(self): # Creates a deck of jokers based on the loaded sprites
+    def createJokerDeck(self):
         jokerImages = self.loadJokerImages()
         deckJokers = []
-
         priceMap = {
+            "The Joker": 4,
+            "Michael Myers": 6,
+            "Fibonacci": 5,
+            "Gauntlet": 5,
+            "Ogre": 5,
+            "StrawHat": 5,
+            "Hog Rider": 4,
+            "? Block": 5,
+            "Hogwarts": 6,
+            "802": 6
         }
-
         for name, image in jokerImages.items():
             price = priceMap.get(name, 5)
             sellPrice = max(2, price // 2)
-
             joker = Jokers(name=name, description="Joker Card", image=image)
             joker.price = price
             joker._sell_price = sellPrice
             deckJokers.append(joker)
-
         return deckJokers
 
     # ---------- Utilities ----------
