@@ -90,6 +90,20 @@ class LevelSelectState(State):
                 #   on which boss is active.
                 #   Finally, make sure to reset the player’s round score to 0 at the end of this setup.
                 #   Avoid unnecessary repetition—use clear condition structure to make the logic readable.
+                boss = lm.curSubLevel.bossLevel
+
+                if boss == "The Needle":
+
+                    self.playerInfo.amountOfHands = max(0, self.playerInfo.amountOfHands - 1)
+
+                elif boss == "The Hook":
+
+                    self.playerInfo.maxCardsInHand = max(1, self.playerInfo.maxCardsInHand - 1)
+
+                elif boss == "The Manacle":
+
+                    self.playerInfo.amountOfDiscards = max(0, self.playerInfo.amountOfDiscards - 1)
+
                 self.playerInfo.roundScore = 0
                 
                 # Set target score for the new sublevel
