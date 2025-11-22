@@ -913,13 +913,13 @@ class GameState(State):
     #   update the visual layout of the player's hand.
     def discardCards(self, removeFromHand: bool):
         if not self.cardsSelectedList:
-            def refill_hand():
-                if len(self.hand) >= 8 or len(self.deck) == 0:
+            def refill(n):
+                if n >= 8 or len(self.deck) == 0:
                     return
-                new_card = self.deck.pop()
-                self.hand.append(new_card)
-                refill_hand()
-            refill_hand()
+                self.hand.append(self.deck.pop())
+                refill(len(self.hand))
+
+            refill(len(self.hand))
             self.cardsSelectedList.clear()
             self.cardsSelectedRect.clear()
             self.playedHandName = ""
