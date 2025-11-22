@@ -870,6 +870,8 @@ class GameState(State):
             hand_mult += 4 * ace_count
             self.playerInfo.playerChips += 20 * ace_count
             self.activated_jokers.add("Hogwarts")
+
+        added_to_round = total_chips * hand_mult
         if "802" in owned and self.playerInfo.amountOfHands == 0:
             added_to_round *= 2
             self.activated_jokers.add("802")
